@@ -25,6 +25,10 @@ const transporter = nodemailer.createTransport({
   }
 })
 
+app.get('/', (req, res) => {
+  res.json({ ping: 'pong' })
+})
+
 app.post('/', async (req, res) => {
   const { name, email, message } = req.body
 
@@ -38,7 +42,7 @@ app.post('/', async (req, res) => {
     html: returnHTML(title, message, name, email)
   })
 
-  res.json({ message: 'Mensagem enviada!' })
+  res.json({ response: mailSent })
 })
 
 app.listen(3040, () => {
