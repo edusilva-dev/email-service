@@ -1,6 +1,6 @@
 export default messageConfig = (to, subject, message) => {
   return {
-    from: process.env.SENDER_MAIL,
+    from: 'edusilva.dev@gmail.com',
     to,
     subject,
     text: message

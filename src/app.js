@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const nodemailer = require('nodemailer')
 const returnHTML = require('./template/mailTemplate')
@@ -17,8 +16,8 @@ const transporter = nodemailer.createTransport({
   port: SMTP_CONFIG.port,
   secure: false,
   auth: {
-    user: process.env.SENDER_MAIL,
-    pass: process.env.SENDER_PASSWORD
+    user: 'edusilva.dev@gmail.com',
+    pass: 32614513
   },
   tls: {
     rejectUnauthorized: false
@@ -29,13 +28,13 @@ app.get('/', (req, res) => {
   res.json({ ping: 'pong' })
 })
 
-app.post('/', async (req, res) => {
+app.post('/send', async (req, res) => {
   const { name, email, message } = req.body
 
   const title = `Nova mensagem de ${name}`
 
   const mailSent = await transporter.sendMail({
-    from: process.env.SENDER_MAIL,
+    from: 'edusilva.dev@gmail.com',
     to: EMAILS,
     subject: title,
     text: message,
@@ -45,6 +44,6 @@ app.post('/', async (req, res) => {
   res.json({ response: mailSent })
 })
 
-app.listen(3040, () => {
+app.listen(3000, () => {
   console.log('http://localhost:3040')
 })
