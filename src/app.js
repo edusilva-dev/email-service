@@ -25,7 +25,7 @@ const transporter = nodemailer.createTransport({
 })
 
 app.get('/', (req, res) => {
-  res.json({ ping: 'pong' })
+  res.send(' { ping: ping } ')
 })
 
 app.post('/send', async (req, res) => {
